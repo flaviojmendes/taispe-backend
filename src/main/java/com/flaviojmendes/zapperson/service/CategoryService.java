@@ -59,7 +59,9 @@ public class CategoryService {
         categories.forEach(categoryList::add);
 
         Category category = page < categoryList.size() ? categoryList.get(page) : null;
-        category.setProducts(this.productService.getProducts(category.getId()));
+        if (category != null) {
+            category.setProducts(this.productService.getProducts(category.getId()));
+        }
 
         return category;
     }
