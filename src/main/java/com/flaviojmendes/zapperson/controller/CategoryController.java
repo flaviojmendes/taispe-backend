@@ -20,6 +20,12 @@ public class CategoryController {
         return categoryService.getCategories(companyId);
     }
 
+    @GetMapping(value = "/category/{companyId}/{page}")
+    @ResponseBody
+    public Category getCategory(@PathVariable String companyId, @PathVariable Integer page) {
+        return categoryService.getCategoryByPage(companyId, page);
+    }
+
     @DeleteMapping(value = "/category/{companyId}")
     @ResponseBody
     public void deleteCategories(@RequestBody Category category, @PathVariable String companyId) {

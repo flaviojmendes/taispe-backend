@@ -5,6 +5,8 @@ import com.flaviojmendes.zapperson.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -51,4 +53,14 @@ public class CategoryService {
         return (optionalCategory.isPresent() && optionalCategory.get().getCompany().getId().equals(companyId));
     }
 
+    public Category getCategoryByPage(String companyId, Integer page) {
+        Iterable<Category> categories = categoryRepository.findAllByCompanyId(companyId);
+        List<Category> categoryList = new ArrayList<>();
+        categories.forEach(categoryList::add);
+
+        Category category = page < categoryList.size() ? categoryList.get(page) : null;
+        category.setProducts(this.productService.getProducts(category.getId()));
+
+        return category;
+    }
 }
