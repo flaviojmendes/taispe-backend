@@ -5,6 +5,8 @@ import com.flaviojmendes.zapperson.model.Company;
 import com.flaviojmendes.zapperson.service.CategoryService;
 import com.flaviojmendes.zapperson.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,19 +18,19 @@ public class CompanyController {
 
     @GetMapping(value = "/company")
     @ResponseBody
-    public Iterable<Company> getCompany() {
-        return companyService.getCompanies();
+    public ResponseEntity<Iterable<Company>> getCompany() {
+        return new ResponseEntity<>(companyService.getCompanies(), HttpStatus.OK);
     }
 
     @PostMapping(value = "/company/email")
     @ResponseBody
-    public Company getCompanyByEmail(@RequestBody String companyEmail) {
-        return companyService.getCompanyByEmail(companyEmail);
+    public ResponseEntity<Company> getCompanyByEmail(@RequestBody String companyEmail) {
+        return new ResponseEntity<>(companyService.getCompanyByEmail(companyEmail), HttpStatus.OK);
     }
     @PostMapping(value = "/company/url")
     @ResponseBody
-    public Company getCompanyByUrl(@RequestBody String companyUrl) {
-        return companyService.getCompanyByUrl(companyUrl);
+    public ResponseEntity<Company> getCompanyByUrl(@RequestBody String companyUrl) {
+        return new ResponseEntity<>(companyService.getCompanyByUrl(companyUrl), HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/company")
@@ -39,7 +41,7 @@ public class CompanyController {
 
     @PostMapping(value = "/company")
     @ResponseBody
-    public Company saveCompany(@RequestBody Company company) {
-        return companyService.addCompany(company);
+    public ResponseEntity<Company> saveCompany(@RequestBody Company company) {
+        return new ResponseEntity<>(companyService.addCompany(company), HttpStatus.CREATED);
     }
 }
