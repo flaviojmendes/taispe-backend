@@ -1,5 +1,6 @@
 package com.flaviojmendes.zapperson.service;
 
+import com.flaviojmendes.zapperson.exception.DuplicatedEntityException;
 import com.flaviojmendes.zapperson.model.Category;
 import com.flaviojmendes.zapperson.model.Company;
 import com.flaviojmendes.zapperson.repository.CategoryRepository;
@@ -17,7 +18,16 @@ public class CompanyService {
         return companyRepository.findAll();
     }
 
-    public Company addCompany(Company company) {
+    public Company addCompany(Company company) throws DuplicatedEntityException {
+
+        Company companyCheck = companyRepository.findByUrl(company.getUrl());
+
+        if(companyCheck != null
+                && companyCheck.getUrl().equals(company.getUrl())
+                && !companyCheck.getId().equals(company.getId())) {
+            throw new DuplicatedEntityException();
+        }
+
         return companyRepository.save(company);
     }
     public void deleteCompany(Company company) {

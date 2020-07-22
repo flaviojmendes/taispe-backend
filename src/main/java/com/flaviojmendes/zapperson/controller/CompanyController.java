@@ -1,5 +1,7 @@
 package com.flaviojmendes.zapperson.controller;
 
+import com.flaviojmendes.zapperson.exception.DuplicatedEntityException;
+import com.flaviojmendes.zapperson.exception.TaispeException;
 import com.flaviojmendes.zapperson.model.Category;
 import com.flaviojmendes.zapperson.model.Company;
 import com.flaviojmendes.zapperson.service.CategoryService;
@@ -42,6 +44,10 @@ public class CompanyController {
     @PostMapping(value = "/company")
     @ResponseBody
     public ResponseEntity<Company> saveCompany(@RequestBody Company company) {
-        return new ResponseEntity<>(companyService.addCompany(company), HttpStatus.CREATED);
+        try {
+            return new ResponseEntity<>(companyService.addCompany(company), HttpStatus.CREATED);
+        } catch (TaispeException e) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
     }
 }
