@@ -8,5 +8,5 @@ public interface CompanyRepository extends CrudRepository<Company, String> {
 
     Company findByEmail(String email);
 
-    Company findByUrl(String url);
+    Company findByUrlIgnoreCase(String url);
 }

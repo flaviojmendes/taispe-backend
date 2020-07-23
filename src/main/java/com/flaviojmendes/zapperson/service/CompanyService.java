@@ -20,7 +20,7 @@ public class CompanyService {
 
     public Company addCompany(Company company) throws DuplicatedEntityException {
 
-        Company companyCheck = companyRepository.findByUrl(company.getUrl());
+        Company companyCheck = companyRepository.findByUrlIgnoreCase(company.getUrl());
 
         if(companyCheck != null
                 && companyCheck.getUrl().equals(company.getUrl())
@@ -43,6 +43,6 @@ public class CompanyService {
     }
 
     public Company getCompanyByUrl(String url) {
-        return companyRepository.findByUrl(url);
+        return companyRepository.findByUrlIgnoreCase(url);
     }
 }
