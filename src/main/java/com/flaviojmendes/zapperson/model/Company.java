@@ -41,6 +41,11 @@ public class Company {
 
     private String backgroundColor;
 
+    private Boolean requireAddress;
+
+    private Boolean requireName;
+
+
     @NotNull
     @Indexed(unique=true)
     private String accessKey;
