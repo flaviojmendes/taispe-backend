@@ -33,6 +33,8 @@ public class Company {
 
     private Long deliveryPrice;
 
+    private String   description;
+
     @NotNull
     @Indexed(unique=true)
     private String email;

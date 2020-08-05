@@ -24,8 +24,10 @@ public class Category {
 
     private String dependsOn;
 
+    private Integer order;
+
     @DBRef
-    private List<Product> products;
+    private List<Product> products; 
 
     @DBRef
     private Company company;

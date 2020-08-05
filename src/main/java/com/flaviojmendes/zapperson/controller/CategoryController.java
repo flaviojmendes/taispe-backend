@@ -37,4 +37,18 @@ public class CategoryController {
     public Category saveCategory(@RequestBody Category category, @PathVariable String companyId) {
         return categoryService.addCategory(category, companyId);
     }
+
+    @PostMapping(value = "/category/up/{companyId}")
+    @ResponseBody
+    public boolean reorderCategoryUp(@RequestBody Category category, @PathVariable String companyId) {
+        return categoryService.setCategoryOrderUp(category, companyId);
+    }
+
+    @PostMapping(value = "/category/down/{companyId}")
+    @ResponseBody
+    public boolean reorderCategoryDown(@RequestBody Category category, @PathVariable String companyId) {
+        return categoryService.setCategoryOrderDown(category, companyId);
+    }
+
+
 }

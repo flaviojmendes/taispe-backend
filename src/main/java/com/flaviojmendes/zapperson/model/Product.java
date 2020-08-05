@@ -32,6 +32,8 @@ public class Product {
 
     private Integer qtyAvailable;
 
+    private Integer order;
+
     private List<String> description;
 
     @DBRef

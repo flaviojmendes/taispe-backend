@@ -1,5 +1,6 @@
 package com.flaviojmendes.zapperson.controller;
 
+import com.flaviojmendes.zapperson.model.Category;
 import com.flaviojmendes.zapperson.model.Product;
 import com.flaviojmendes.zapperson.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,18 @@ public class ProductController {
     @ResponseBody
     public Product saveProduct(@RequestBody Product product, @PathVariable String companyId) {
         return productService.addProduct(product, companyId);
+    }
+
+
+    @PostMapping(value = "/product/up/{categoryId}")
+    @ResponseBody
+    public boolean reorderCategoryUp(@RequestBody Product product, @PathVariable String categoryId) {
+        return productService.setProductOrderUp(product, categoryId);
+    }
+
+    @PostMapping(value = "/product/down/{categoryId}")
+    @ResponseBody
+    public boolean reorderCategoryDown(@RequestBody Product product, @PathVariable String categoryId) {
+        return productService.setProductOrderDown(product, categoryId);
     }
 }
