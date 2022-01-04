@@ -31,6 +31,8 @@ public class Company {
 
     private String logo;
 
+    private String currency;
+
     private Long deliveryPrice;
 
     private String   description;
