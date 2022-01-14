@@ -33,6 +33,8 @@ public class Company {
 
     private String currency;
 
+    private String language;
+
     private Long deliveryPrice;
 
     private String   description;
